@@ -110,3 +110,16 @@ annotate service.A_ServiceOrder with {
         ![@UI.TextArrangement] : #TextSeparate,
     }
 };
+annotate service.CustomerMessage with @(
+    UI.Identification : [
+        {
+            $Type : 'UI.DataField',
+            Value : ID,
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'alansmith_34_a42Srv.Action1',
+            Label : 'Generate Reply',
+        },
+    ]
+);

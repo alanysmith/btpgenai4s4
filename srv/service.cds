@@ -6,13 +6,20 @@ using { alansmith_34_a42 as my } from '../db/schema.cds';
 service alansmith_34_a42Srv
 {
     @odata.draft.enabled
-    entity CustomerMessage as projection on my.CustomerMessage;
-
+    entity CustomerMessage as
+        projection on my.CustomerMessage
+            actions
+            {
+                action Action1
+               (
+               );
+            };
     entity A_ServiceOrder as projection on S4HCP_ServiceOrder_Odata.A_ServiceOrder
     {
         ServiceOrder,
         ServiceOrderDescription
     };
+
     @odata.draft.enabled
     entity ProductFAQ as projection on my.ProductFAQ
     {
