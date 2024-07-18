@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Thu Jul 18 2024 15:54:59 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Thu Jul 18 2024 17:52:44 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.14.1|
 |**Generation Platform**<br>SAP Business Application Studio|
