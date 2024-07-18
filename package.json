@@ -30,7 +30,8 @@
     "start-local": "npm run generate-entry-point && npm run cds-watch",
     "generate-entry-point": "dev-cap-tools gen-entrypoint",
     "cds-watch": "cds watch --open",
-    "watch-alansmith_34_a42.Customermessages": "cds watch --open alansmith_34_a42.Customermessages/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-alansmith_34_a42.Customermessages": "cds watch --open alansmith_34_a42.Customermessages/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-alansmith_34_a42.ProductFAQApp": "cds watch --open alansmith_34_a42.ProductFAQApp/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -48,6 +49,17 @@
         "[production]": {
           "kind": "xsuaa"
         }
+      },
+      "S4HCP_ServiceOrder_Odata": {
+        "kind": "odata-v2",
+        "csrf": true,
+        "csrfInBatch": true,
+        "model": "srv/external/S4HCP_ServiceOrder_Odata",
+        "[production]": {
+          "credentials": {
+            "destination": "S4HCP-ServiceOrder-Odata"
+          }
+        }
       }
     },
     "features": {
@@ -56,6 +68,7 @@
   },
   "lcap": true,
   "sapux": [
-    "app/alansmith_34_a42.Customermessages"
+    "app/alansmith_34_a42.Customermessages",
+    "app/alansmith_34_a42.ProductFAQApp"
   ]
 }

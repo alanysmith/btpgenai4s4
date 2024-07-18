@@ -28,7 +28,7 @@
                     return Controller.extend("PreviewController", {
                         onInit: function () {
 
-                            const data = {"Services":[{"ServiceName":"alansmith_34_a42Srv","DetailsURL":"./service/alansmith_34_a42/","Metadata":"./service/alansmith_34_a42/$metadata","Entities":[{"Name":"CustomerMessage","URL":"./service/alansmith_34_a42/CustomerMessage","FioriURL":"$fiori-preview/alansmith_34_a42Srv/CustomerMessage#preview-app"}],"EntitiesCount":1}]}
+                            const data = {"Services":[{"ServiceName":"alansmith_34_a42Srv","DetailsURL":"./service/alansmith_34_a42/","Metadata":"./service/alansmith_34_a42/$metadata","Entities":[{"Name":"CustomerMessage","URL":"./service/alansmith_34_a42/CustomerMessage","FioriURL":"$fiori-preview/alansmith_34_a42Srv/CustomerMessage#preview-app"},{"Name":"A_ServiceOrder","URL":"./service/alansmith_34_a42/A_ServiceOrder","FioriURL":"$fiori-preview/alansmith_34_a42Srv/A_ServiceOrder#preview-app"},{"Name":"ProductFAQ","URL":"./service/alansmith_34_a42/ProductFAQ","FioriURL":"$fiori-preview/alansmith_34_a42Srv/ProductFAQ#preview-app"}],"EntitiesCount":3}]}
                             this.getView().setModel(new JSONModel(data));
                         }
                     });

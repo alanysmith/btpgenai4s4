@@ -1,14 +1,14 @@
 using { alansmith_34_a42Srv } from '../srv/service.cds';
 
-annotate alansmith_34_a42Srv.CustomerMessage with @UI.HeaderInfo: { TypeName: 'Customer Message', TypeNamePlural: 'Customer Messages', Title: { Value: customerMessageID } };
-annotate alansmith_34_a42Srv.CustomerMessage with {
-  ID @UI.Hidden @Common.Text: { $value: customerMessageID, ![@UI.TextArrangement]: #TextOnly }
-};
-annotate alansmith_34_a42Srv.CustomerMessage with @UI.Identification: [{ Value: customerMessageID }];
+annotate alansmith_34_a42Srv.CustomerMessage with @UI.HeaderInfo: { TypeName: 'Customer Message', TypeNamePlural: 'Customer Messages', Title: { Value: ID } };
+
+annotate alansmith_34_a42Srv.CustomerMessage with @UI.Identification: [{ Value: ID }];
+
 annotate alansmith_34_a42Srv.CustomerMessage with @UI.DataPoint #titleEnglish: {
   Value: titleEnglish,
   Title: 'Title (English)',
 };
+
 annotate alansmith_34_a42Srv.CustomerMessage with @UI.DataPoint #customerName: {
   Value: customerName,
   Title: 'Customer Name',
@@ -18,7 +18,7 @@ annotate alansmith_34_a42Srv.CustomerMessage with @UI.DataPoint #productName: {
   Title: 'Product Name',
 };
 annotate alansmith_34_a42Srv.CustomerMessage with {
-  customerMessageID @title: 'ID';
+  ID @title: 'ID';
   titleEnglish @title: 'Title (English)';
   customerName @title: 'Customer Name';
   productName @title: 'Product Name';
@@ -39,7 +39,6 @@ annotate alansmith_34_a42Srv.CustomerMessage with {
 };
 
 annotate alansmith_34_a42Srv.CustomerMessage with @UI.LineItem: [
-    { $Type: 'UI.DataField', Value: customerMessageID },
     { $Type: 'UI.DataField', Value: titleEnglish },
     { $Type: 'UI.DataField', Value: customerName },
     { $Type: 'UI.DataField', Value: productName },
@@ -61,7 +60,7 @@ annotate alansmith_34_a42Srv.CustomerMessage with @UI.LineItem: [
 
 annotate alansmith_34_a42Srv.CustomerMessage with @UI.FieldGroup #Main: {
   $Type: 'UI.FieldGroupType', Data: [
-    { $Type: 'UI.DataField', Value: customerMessageID },
+    { $Type: 'UI.DataField', Value: ID },
     { $Type: 'UI.DataField', Value: titleEnglish },
     { $Type: 'UI.DataField', Value: customerName },
     { $Type: 'UI.DataField', Value: productName },
@@ -93,6 +92,5 @@ annotate alansmith_34_a42Srv.CustomerMessage with @UI.Facets: [
 ];
 
 annotate alansmith_34_a42Srv.CustomerMessage with @UI.SelectionFields: [
-  customerMessageID
+  ID
 ];
-

@@ -1,0 +1,15 @@
+{
+    "name": "alansmith_34_a42.productfaqapp",
+    "version": "0.0.1",
+    "description": "My SAP Product FAQ App",
+    "keywords": [
+        "ui5",
+        "openui5",
+        "sapui5"
+    ],
+    "main": "webapp/index.html",
+    "scripts": {
+        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
+    },
+    "devDependencies": { }
+}
