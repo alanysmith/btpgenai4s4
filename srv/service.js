@@ -7,6 +7,7 @@ const customermessage_Logic_Preprocessing = require('./code/customermessage-logi
 const productfaq_Logic = require('./code/productfaq-logic');
 const productfaq_Logic_EmbedFAQ = require('./code/productfaq-logic-embedFAQ');
 const customermessage_Logic_GenerateReply = require('./code/customermessage-logic-generateReply');
+const customermessage_Logic_MaintainSO = require('./code/customermessage-logic-maintainSO');
 
 class alansmith_34_a42Srv extends LCAPApplicationService {
     async init() {
@@ -25,6 +26,10 @@ class alansmith_34_a42Srv extends LCAPApplicationService {
 
         this.before('Action1', 'CustomerMessage', async (request) => {
             await customermessage_Logic_GenerateReply(request);
+        });
+
+        this.before('__undefined__', 'CustomerMessage', async (request) => {
+            await customermessage_Logic_MaintainSO(request);
         });
 
         return super.init();
