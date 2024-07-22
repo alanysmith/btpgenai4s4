@@ -121,5 +121,10 @@ annotate service.CustomerMessage with @(
             Action : 'alansmith_34_a42Srv.Action1',
             Label : 'Generate Reply',
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'alansmith_34_a42Srv.Action2',
+            Label : 'Action2',
+        },
     ]
 );

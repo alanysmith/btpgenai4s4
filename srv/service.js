@@ -28,7 +28,7 @@ class alansmith_34_a42Srv extends LCAPApplicationService {
             await customermessage_Logic_GenerateReply(request);
         });
 
-        this.before('__undefined__', 'CustomerMessage', async (request) => {
+        this.before('Action2', 'CustomerMessage', async (request) => {
             await customermessage_Logic_MaintainSO(request);
         });
 

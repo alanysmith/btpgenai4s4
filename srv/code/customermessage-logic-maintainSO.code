@@ -4,7 +4,7 @@
     "configuration": {
         "phase": "before",
         "events": [
-            ""
+            "Action2"
         ],
         "entity": "alansmith_34_a42Srv.CustomerMessage"
     },
