@@ -30,7 +30,7 @@
       ],
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
-      "type": "pwa-node",
+      "type": "node",
       "cwd": "${workspaceFolder}/",
       "preLaunchTask": "PreLaunchTask for S4HCP-ServiceOrder-Odata",
       "envFile": "${workspaceFolder}/env/.env2",

@@ -30,52 +30,65 @@ try {
 	const s4HcpServiceOrderOdata = await cds.connect.to('S4HCP_ServiceOrder_Odata');
 	const { A_ServiceOrder, A_ServiceOrderText } = s4HcpServiceOrderOdata.entities;
 	
-	// Build the Service Order request body
-	const itemDur = {
-		ServiceOrderItemDescription: 'Service Order duration',
-		Product: 'SRV_01',
-		ServiceDuration: 1,
-		ServiceDurationUnit: 'HR'
-	};
-	const itemQty = {
-		ServiceOrderItemDescription: 'Service Order quantity',
-		Product: 'SRV_02',
-		Quantity: 1,
-		QuantityUnit: 'EA'
-	};
-	const persResp = { PersonResponsible: '9980003640' };
-	const initNote = {
-		Language: 'EN',
-		LongTextID: 'S001',
-		LongText: fullMessageEnglish
-	};
-	const servOrder = {
-		ServiceOrderType: 'SVO1',
-		ServiceOrderDescription: titleEnglish,
-		Language: 'EN',
-		ServiceDocumentPriority: '5',
-		SalesOrganization: '1710',
-		DistributionChannel: '10',
-		Division: '00',
-		SoldToParty: '17100002',
-		to_PersonResponsible: [persResp],
-		to_Item: [itemDur, itemQty],
-		to_Text: [initNote]
-	};
+	if (attachedSOId) {
+        // Add suggested response to the existing Service Order
+        const finalNote = await s4HcpServiceOrderOdata.run(
+            INSERT.into(A_ServiceOrderText, {
+                ServiceOrder: attachedSOId,
+                Language: 'EN',
+                LongTextID: 'S003',
+                LongText: suggestedResponseEnglish
+            })
+        );
+        LOG.info(`Created Service Order Note: ${JSON.stringify(finalNote)}`);
+
+    } else {
+		// Build the Service Order request body
+		const itemDur = {
+			ServiceOrderItemDescription: 'Service Order duration',
+			Product: 'SRV_01',
+			ServiceDuration: 1,
+			ServiceDurationUnit: 'HR'
+		};
+		const itemQty = {
+			ServiceOrderItemDescription: 'Service Order quantity',
+			Product: 'SRV_02',
+			Quantity: 1,
+			QuantityUnit: 'EA'
+		};
+		const persResp = { PersonResponsible: '9980003640' };
+		const initNote = {
+			Language: 'EN',
+			LongTextID: 'S001',
+			LongText: fullMessageEnglish
+		};
+		const servOrder = {
+			ServiceOrderType: 'SVO1',
+			ServiceOrderDescription: titleEnglish,
+			Language: 'EN',
+			ServiceDocumentPriority: '5',
+			SalesOrganization: '1710',
+			DistributionChannel: '10',
+			Division: '00',
+			SoldToParty: '17100002',
+			to_PersonResponsible: [persResp],
+			to_Item: [itemDur, itemQty],
+			to_Text: [initNote]
+		};
 	
-	// Create the Service Order
-	const serviceOrder = await s4HcpServiceOrderOdata.run(INSERT.into(A_ServiceOrder, servOrder));
-	const soId = serviceOrder.ServiceOrder;
+		// Create the Service Order
+		const serviceOrder = await s4HcpServiceOrderOdata.run(INSERT.into(A_ServiceOrder, servOrder));
+		const soId = serviceOrder.ServiceOrder;
 	
-	LOG.info(`Created Service Order: ${JSON.stringify(serviceOrder)}`);
+		LOG.info(`Created Service Order: ${JSON.stringify(serviceOrder)}`);
 	
-	// Update the customer message with the new service order ID
-	await UPDATE('alansmith_34_a42.CustomerMessage')
-		.set({ S4HC_ServiceOrder_ServiceOrder: soId })
-		.where({ ID });
+		// Update the customer message with the new service order ID
+		await UPDATE('alansmith_34_a42.CustomerMessage')
+			.set({ S4HC_ServiceOrder_ServiceOrder: soId })
+			.where({ ID });
 	
-	LOG.info(`Updated customer message with Service Order Id: ${soId}`);
-	
+		LOG.info(`Updated customer message with Service Order Id: ${soId}`);
+	}
 	
 } catch (err) {
 	LOG.error(JSON.stringify(err));

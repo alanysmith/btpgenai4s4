@@ -23,6 +23,27 @@ try {
         S4HC_ServiceOrder_ServiceOrder: attachedSOId
     } = customerMessage;
 
+//New code
+    let soContext = '';
+    if (attachedSOId) {
+    // Fetch service order details if there's an attached service order
+        const s4HcpServiceOrderOdata = await cds.connect.to('S4HCP_ServiceOrder_Odata');
+        const { A_ServiceOrder } = s4HcpServiceOrderOdata.entities;
+        const s4hcSO = await s4HcpServiceOrderOdata.run(
+            SELECT.from(A_ServiceOrder, so => {
+                so('ServiceOrder'),
+                    so.to_Text(note => {
+                        note('*')
+                    })
+            })
+                .where({ ServiceOrder: attachedSOId })
+        );
+
+    // Concatenate long texts from the service order into a single string
+        soContext = s4hcSO[0].to_Text.map(note => note.LongText).join(' ');
+    }
+
+
     let replyPrompt = '';
     if (messageCategory === 'Technical') {
         // Embed the customer message to find relevant FAQs
@@ -49,6 +70,7 @@ try {
     // Complete the prompt - common to both cases
     replyPrompt += `
             newCustomerMessage: ${fullMessageCustomerLanguage}
+            ${soContext ? `previousCustomerMessages: ${soContext}` : ''}
             Produce the reply in two languages: in the original language of newCustomerMessage and in English. Return the result in the following JSON template:
             JSON template: {
                 suggestedResponseEnglish: Text,

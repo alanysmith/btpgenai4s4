@@ -21,26 +21,6 @@
       }
     },
     {
-      "label": "PreLaunchTask for Run alansmith_34_a42",
-      "type": "process",
-      "command": "npx",
-      "args": [
-        "dev-cap-tools",
-        "gen-entrypoint",
-        "--ui5version",
-        "1.124.0",
-        "--ui5theme",
-        "sap_belize"
-      ],
-      "dependsOn": [
-        "BuildMDK",
-        "DeployToHANADB:.env1"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
       "label": "npm-install",
       "type": "process",
       "command": "npm",
@@ -108,6 +88,26 @@
       "dependsOn": [
         "BuildMDK",
         "DeployToHANADB:.env2"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "PreLaunchTask for Run alansmith_34_a42",
+      "type": "process",
+      "command": "npx",
+      "args": [
+        "dev-cap-tools",
+        "gen-entrypoint",
+        "--ui5version",
+        "1.124.0",
+        "--ui5theme",
+        "sap_belize"
+      ],
+      "dependsOn": [
+        "BuildMDK",
+        "DeployToHANADB:.env1"
       ],
       "options": {
         "cwd": "${workspaceFolder}"

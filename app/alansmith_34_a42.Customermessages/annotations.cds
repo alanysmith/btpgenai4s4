@@ -124,7 +124,7 @@ annotate service.CustomerMessage with @(
         {
             $Type : 'UI.DataFieldForAction',
             Action : 'alansmith_34_a42Srv.Action2',
-            Label : 'Action2',
+            Label : 'Maintain SO',
         },
     ]
 );
